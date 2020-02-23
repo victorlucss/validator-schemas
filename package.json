@@ -1,0 +1,21 @@
+{
+  "name": "validate-schemas",
+  "version": "0.0.1-beta",
+  "description": "Validate schemas (javascript objects) using Validate-Schemas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": false,
+  "keywords": [
+    "validate",
+    "json",
+    "schema",
+    "validate",
+    "object"
+  ],
+  "author": "Victor Lucas",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
