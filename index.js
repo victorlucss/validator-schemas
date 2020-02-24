@@ -1,4 +1,4 @@
 'use strict';
 
-module.exports.validate = require('./lib/validate');
-module.exports.validateSchema = require('./lib/validate_schema')
+module.exports.validate = require('./src/validate');
+module.exports.validateSchema = require('./src/validate_schema')
