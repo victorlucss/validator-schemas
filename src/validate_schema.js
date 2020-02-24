@@ -1,5 +1,7 @@
-const {DEFAULT_ACCEPTED_TYPES, DEFAULT_ENTRIES, DEFAULT_REQUIRED_VALUE, DEFAULT_MIN_LENGTH} = require('./default_values')
+'use strict';
 
+const {DEFAULT_ACCEPTED_TYPES, DEFAULT_ENTRIES, DEFAULT_REQUIRED_VALUE, DEFAULT_MIN_LENGTH} = require('./default_values')
+const validate = require('./validate');
 const VALIDATORS = {
     'string': validate.isString,
     'integer': validate.isInteger,

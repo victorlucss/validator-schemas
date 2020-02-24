@@ -1,6 +1,6 @@
 {
   "name": "validate-schemas",
-  "version": "0.1.3-beta",
+  "version": "0.1.0-beta",
   "description": "Validate schemas (javascript objects) using Validate-Schemas",
   "main": "index.js",
   "scripts": {
