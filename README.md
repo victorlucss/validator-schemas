@@ -59,3 +59,43 @@ try {
     console.error(ex)
 }
 ```
+
+## Supported types
+* **string**
+* **integer**
+* **float**
+* **boolean**
+* **timestamp**
+* **object** - requires *of* field, that recieves a schema
+* **map** - requires *mapOf* field, that recieves a schema
+* **list** - you can set the type by passing *listOf* field, that recieve another type (can be some of the listed)
+
+## Non-listed entries
+
+If you have some json with not maped keys, like the following...
+
+```json
+{
+    "48": 150,
+    "52": 32,
+    "product": "Clothes"
+}
+```
+
+Where the 48, 52 keys can be some other number, you'll need to validate that as non-listed entry. To do this you need to create a schema with `_otr` (abbreviation of "others"):
+
+```javascript
+const schema = {
+    product: {
+        type: "string"
+    },
+
+    _otr: {
+        key: "[0-9]+",
+        value: "integer" //You can use any of supported types.
+    }
+}
+
+```
+
+Now, your validation will cover every fields.
