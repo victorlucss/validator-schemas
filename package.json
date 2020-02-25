@@ -1,7 +1,7 @@
 {
-  "name": "validate-schemas",
+  "name": "validator-schemas",
   "version": "0.1.0-beta",
-  "description": "Validate schemas (javascript objects) using Validate-Schemas",
+  "description": "Validate schemas (javascript objects) using Validator-Schemas",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,7 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/victorlucss/validate-schemas.git"
+    "url": "https://github.com/victorlucss/validator-schemas.git"
   },
   "keywords": [
     "validate",

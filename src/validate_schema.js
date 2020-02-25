@@ -13,7 +13,7 @@ const VALIDATORS = {
     'object': validate.isObject
 }
 
-module.exports.validateSchema = function(data, schema){
+function validateSchema(data, schema){
 
 
     let fieldsInData = Object.keys(data);
@@ -131,3 +131,5 @@ module.exports.validateSchema = function(data, schema){
         }
     })
 };
+
+module.exports = validateSchema;
