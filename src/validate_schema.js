@@ -69,7 +69,7 @@ function validateSchema(data, schema){
                 if(validate.isValid(value['notEmpty'])) notEmpty = value['notEmpty']
                 
                 if(!validate.isValid(dataValue) && required) throw new ValidationError(`Campo ${key} obrigatório!` );
-                if(!validate.isValid(dataValue) && dataValue === "" && notEmpty) throw new ValidationError(`Campo ${key} não pode ser vazio ("")!` );
+                if(dataValue === "" && notEmpty) throw new ValidationError(`Campo ${key} não pode ser vazio ("")!` );
                 if(validate.isValid(dataValue) && !typeValidatorsFun(dataValue)) throw new ValidationError(`Campo ${key} deve ser do tipo ${type}!`);
                 
                 if(type === 'map'){
