@@ -1,6 +1,6 @@
 'use strict';
 
-const {DEFAULT_ACCEPTED_TYPES, DEFAULT_ENTRIES, DEFAULT_REQUIRED_VALUE, DEFAULT_MIN_LENGTH} = require('./default_values')
+const {DEFAULT_ACCEPTED_TYPES, DEFAULT_ENTRIES, DEFAULT_REQUIRED_VALUE, DEFAULT_MIN_LENGTH,DEFAULT_NOT_EMPTY_VALUE} = require('./default_values')
 const {ValidationError} = require('./common')
 const validate = require('./validate');
 const VALIDATORS = {
@@ -50,16 +50,6 @@ function validateSchema(data, schema){
         // OUTROS NÃO CONHECIDOS NO SCHEMA
     }
     
-
-    
-    
-    // fieldsInData.map((fieldValue, fieldKey) => {
-    //     if(validate.isValid(schema['_otr'])){
-
-    //     }
-        
-    //     if(!validate.isValid(schema[fieldValue])) throw new ValidationError(`Campo ${fieldValue} não conhecido no Schema!`);
-    // })
     Object.entries(schema).map(([key, value]) => {
         if(!DEFAULT_ENTRIES.includes(key)){
 
@@ -72,16 +62,18 @@ function validateSchema(data, schema){
                 if(!validate.isValid(type)) throw new ValidationError(`É obrigatório informar o tipo de dado de ${key}. Utilize a diretiva "type" com algum dos seguintes tipos: ${DEFAULT_ACCEPTED_TYPES}`);
                 if(!DEFAULT_ACCEPTED_TYPES.includes(type)) throw new ValidationError(`Tipo ${type} não suportado! Tente alguns dos seguintes: ${DEFAULT_ACCEPTED_TYPES}`);
 
-                let required = DEFAULT_REQUIRED_VALUE;
+                let required = DEFAULT_REQUIRED_VALUE,
+                    notEmpty = DEFAULT_NOT_EMPTY_VALUE;
 
                 if(validate.isValid(value['required'])) required = value['required']
+                if(validate.isValid(value['notEmpty'])) notEmpty = value['notEmpty']
                 
                 if(!validate.isValid(dataValue) && required) throw new ValidationError(`Campo ${key} obrigatório!` );
+                if(!validate.isValid(dataValue) && dataValue === "" && notEmpty) throw new ValidationError(`Campo ${key} não pode ser vazio ("")!` );
                 if(validate.isValid(dataValue) && !typeValidatorsFun(dataValue)) throw new ValidationError(`Campo ${key} deve ser do tipo ${type}!`);
                 
                 if(type === 'map'){
                     if(!validate.isValid(value['mapOf'])) throw new ValidationError(`Campo mapOf obrigatório para tipo map!`);
-                    // if(required && !validate.isValid(dataValue)) throw new ValidationError(`Campo `);
 
                     let mapOfSchema = value['mapOf'];
                     if(validate.isValid(dataValue)){
